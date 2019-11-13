@@ -1,69 +1,85 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+
 import java.io.File;
 import java.io.IOException;
 
 
-public class Launch {
+public class Launch extends JFrame {
+  // static final long serialVersionUID = ;
+  public Launch() {
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setTitle("Hello");
+  }
     public static void main(String[] args) throws IOException {
-        String tempTitle;
-        String tempAuthor;
-        String tempPublisher;
-        int tempPages = 0;
-        int tempBooks = 0;
+    javax.swing.SwingUtilities.invokeLater(new Runnable() {
+      public void run() {
+        Launch storeInstance = new Launch();
+        storeInstance.setVisible(true);
+      }
+  });
 
-        Customer tempCustomer;
-        String tempName;
-        String tempFirst;
-        String tempLast;
-        String tempEmail;
-        String tempRental;
 
-        Bookstore mainstore = new Bookstore(new ArrayList<Book>(), new ArrayList<Customer>());
+    //     String tempTitle;
+    //     String tempAuthor;
+    //     String tempPublisher;
+    //     int tempPages = 0;
+    //     int tempBooks = 0;
 
-        File bookFile = new File("catalog.txt");
-        File customerFile = new File("clientele.txt");
+    //     Customer tempCustomer;
+    //     String tempName;
+    //     String tempFirst;
+    //     String tempLast;
+    //     String tempEmail;
+    //     String tempRental;
+
+    //     Bookstore mainstore = new Bookstore(new ArrayList<Book>(), new ArrayList<Customer>());
+
+    //     File bookFile = new File("catalog.txt");
+    //     File customerFile = new File("clientele.txt");
         
-        try(Scanner scanBooks = new Scanner(bookFile)) {
-            while(scanBooks.hasNextLine()) {
+    //     try(Scanner scanBooks = new Scanner(bookFile)) {
+    //         while(scanBooks.hasNextLine()) {
 
-                tempTitle = scanBooks.nextLine();                
-                tempAuthor = scanBooks.nextLine();
-                tempPublisher = scanBooks.nextLine();                
-                tempPages = Integer.parseInt(scanBooks.nextLine());                
-                tempBooks = Integer.parseInt(scanBooks.nextLine());  
+    //             tempTitle = scanBooks.nextLine();                
+    //             tempAuthor = scanBooks.nextLine();
+    //             tempPublisher = scanBooks.nextLine();                
+    //             tempPages = Integer.parseInt(scanBooks.nextLine());                
+    //             tempBooks = Integer.parseInt(scanBooks.nextLine());  
 
-                mainstore.addBook(new Book(tempTitle, tempAuthor, tempPublisher, tempPages, tempBooks));
-            }
-        }
+    //             mainstore.addBook(new Book(tempTitle, tempAuthor, tempPublisher, tempPages, tempBooks));
+    //         }
+    //     }
         
-        try(Scanner scanCustomers = new Scanner(customerFile)) {
-          while(scanCustomers.hasNextLine()) {
-            tempName = scanCustomers.nextLine();
-            tempEmail = scanCustomers.nextLine();
-            tempRental = scanCustomers.nextLine();
+    //     try(Scanner scanCustomers = new Scanner(customerFile)) {
+    //       while(scanCustomers.hasNextLine()) {
+    //         tempName = scanCustomers.nextLine();
+    //         tempEmail = scanCustomers.nextLine();
+    //         tempRental = scanCustomers.nextLine();
 
-            System.out.print(tempEmail);
-            Scanner parseName = new Scanner(tempName);
-            parseName.useDelimiter(", ");
-            tempLast = parseName.next();
-            tempFirst = parseName.next();
+    //         System.out.print(tempEmail);
+    //         Scanner parseName = new Scanner(tempName);
+    //         parseName.useDelimiter(", ");
+    //         tempLast = parseName.next();
+    //         tempFirst = parseName.next();
 
-            parseName.close();
-            tempCustomer = new Customer(tempFirst, tempLast, tempEmail);
-            Scanner parseRental = new Scanner(tempRental);
-            while(parseRental.hasNext()) {
-              parseRental.useDelimiter(", ");
-              tempAuthor = parseRental.next();
-              tempTitle = parseRental.next();
+    //         parseName.close();
+    //         tempCustomer = new Customer(tempFirst, tempLast, tempEmail);
+    //         Scanner parseRental = new Scanner(tempRental);
+    //         while(parseRental.hasNext()) {
+    //           parseRental.useDelimiter(", ");
+    //           tempAuthor = parseRental.next();
+    //           tempTitle = parseRental.next();
 
-              mainstore.rentBook(tempCustomer, tempTitle, tempAuthor);
-            }
-            mainstore.addCustomer(tempCustomer);
-            parseRental.close();
-          }
-        }
-        mainstore.displayInventory();
-        mainstore.displayClientele();
+    //           mainstore.rentBook(tempCustomer, tempTitle, tempAuthor);
+    //         }
+    //         mainstore.addCustomer(tempCustomer);
+    //         parseRental.close();
+    //       }
+    //     }
+    //     mainstore.displayInventory();
+    //     mainstore.displayClientele();
     }
 }
