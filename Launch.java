@@ -19,6 +19,7 @@ public class Launch {
     String tempRental;
 
     Bookstore mainstore = new Bookstore(new ArrayList<Book>(), new ArrayList<Customer>());
+    Controller storeController = new Controller(mainstore);
 
     File bookFile = new File("catalog.txt");
     File customerFile = new File("clientele.txt");
@@ -65,7 +66,7 @@ public class Launch {
 
     javax.swing.SwingUtilities.invokeLater(new Runnable() {
       public void run() {
-        StoreUI store = new StoreUI(mainstore);
+        StoreUI storeView = new StoreUI(storeController);
       }
     });
   }
