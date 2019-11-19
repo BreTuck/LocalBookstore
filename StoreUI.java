@@ -8,7 +8,7 @@ public class StoreUI extends JFrame {
   private static int MENUBAR_HEIGHT = 35;
   private JPanel homeScreen;
   private Container frameCntPane;
-  private Controller mainControl;
+  public Controller mainControl;
 
   public StoreUI(Controller control) {
     super("Local Bookstore");

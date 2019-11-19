@@ -8,7 +8,7 @@ public class AddBookForm extends JPanel {
 
     private static int GAP_WIDTH = 10;
     private static int GAP_HEIGHT = 10;
-
+    private TextField[] formFields = new TextField[5];
     private StoreUI storeInstance;
 
     public AddBookForm(StoreUI store) {
@@ -31,6 +31,7 @@ public class AddBookForm extends JPanel {
             public void actionPerformed(ActionEvent event) {
                 // Create Book object
                 // mainControl.addBook(Book object);
+                storeInstance.mainControl.add(new Book(formFields[0].getText(), formFields[1].getText(), formFields[2].getText(), Integer.parseInt(formFields[3].getText()), Integer.parseInt(formFields[4].getText())));
                 storeInstance.setHomeScreen();
             }
         });
@@ -42,9 +43,10 @@ public class AddBookForm extends JPanel {
         String[] formLabels = {"Title: ", "Author: ", "Publisher: ", "Number of Pages: ", "Number of Copies to Add: "};
         int numPairs = formLabels.length;
 
-        for(int labelIdx = 0; labelIdx < numPairs; labelIdx = labelIdx + 1) {
-            JLabel formLabel = new JLabel(formLabels[labelIdx], JLabel.TRAILING);
+        for(int idx = 0; idx < numPairs; idx = idx + 1) {
+            JLabel formLabel = new JLabel(formLabels[idx], JLabel.TRAILING);
             TextField formField = new TextField(txtFieldSize);
+            this.formFields[idx] = formField;
             formLabel.setLabelFor(formField);
             form.add(formLabel);
             form.add(formField);

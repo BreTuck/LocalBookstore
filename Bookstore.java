@@ -17,11 +17,11 @@ public class Bookstore {
   public int getInventoryCount() {
     return this.inventory.size();
   }
-  public void addBook(Book newBook) {
-    this.inventory.add(newBook);
+  public boolean addBook(Book newBook) {
+    return this.inventory.add(newBook);
   }
-  public void addCustomer(Customer newCustomer) {
-    this.clientele.add(newCustomer);
+  public boolean addCustomer(Customer newCustomer) {
+    return this.clientele.add(newCustomer);
   }
   public Customer searchCustomer(String fname, String lname) {
     for(Customer customerElem : this.clientele) {
