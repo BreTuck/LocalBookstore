@@ -27,6 +27,8 @@ public class StoreUI extends JFrame {
 
     AddBookForm addBookForm = new AddBookForm(this);
     AddCustomerForm addCustomerForm = new AddCustomerForm(this);
+    SearchBookForm searchBookForm = new SearchBookForm(this);
+    SearchCustomerForm searchCustomerForm = new SearchCustomerForm(this);
     DisplayPane<Book> fullInvDisplay = new DisplayPane<Book>(this, this.mainControl.updateBookData());
     // DisplayPane rentedInvDisplay = new DisplayPane<Book>(this, this.mainControl.updateBookData());
     DisplayPane<Customer> customerDisplay = new DisplayPane<Customer>(this, this.mainControl.updateCustomerData());
@@ -54,10 +56,23 @@ public class StoreUI extends JFrame {
     mainMenu.addSeparator();
 
     JMenu searchMenu = new JMenu("Search...");
-    JMenuItem searchInvMenuItem = new JMenuItem("Search Inventory By Title");
-    JMenuItem searchCustomerMenuItem = new JMenuItem("Search Customer By Name");
-    searchMenu.add(searchInvMenuItem);
-    searchMenu.add(searchCustomerMenuItem);
+    JMenuItem searchInv = new JMenuItem("Search Inventory By Title");
+    JMenuItem searchCustomer = new JMenuItem("Search Customer By Name");
+
+    searchInv.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+        changeScreen(searchBookForm);
+      }
+    });
+
+    searchCustomer.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+        changeScreen(searchCustomerForm);
+      }
+    });
+
+    searchMenu.add(searchInv);
+    searchMenu.add(searchCustomer);
     mainMenu.add(searchMenu);
     mainMenu.addSeparator();
 

@@ -12,6 +12,16 @@ public class Controller {
     public Boolean add(Customer customerToAdd) {
         return this.mainModel.addCustomer(customerToAdd);
     }
+    public Book[] search(String proposedTitle) {
+        Book[] potentialBook = new Book[1];
+        potentialBook[0] = this.mainModel.searchBook(proposedTitle);
+        return potentialBook;
+    }
+    public Customer[] search(String proposedFName, String proposedLName) {
+        Customer[] potentialCustomer = new Customer[1];
+        potentialCustomer[0] = this.mainModel.searchCustomer(proposedFName, proposedLName);
+        return potentialCustomer;
+    }
     public Book[] updateBookData() {
         ArrayList<Book> inv = this.mainModel.getInventory();
         int inventoryCount = inv.size();
