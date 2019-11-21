@@ -25,22 +25,31 @@ public class StoreUI extends JFrame {
     menuBar.setOpaque(true);
     menuBar.setBackground(new Color(30, 150, 200));
 
-    AddBookForm newAddForm = new AddBookForm(this);
+    AddBookForm addBookForm = new AddBookForm(this);
+    AddCustomerForm addCustomerForm = new AddCustomerForm(this);
+    DisplayPane<Book> fullInvDisplay = new DisplayPane<Book>(this, this.mainControl.updateBookData());
+    // DisplayPane rentedInvDisplay = new DisplayPane<Book>(this, this.mainControl.updateBookData());
+    DisplayPane<Customer> customerDisplay = new DisplayPane<Customer>(this, this.mainControl.updateCustomerData());
 
     JMenu mainMenu = new JMenu("Main Menu");
     
     JMenu addMenu = new JMenu("Add New...");
-    JMenuItem addBookMenuItem = new JMenuItem("Add New Book");
-    JMenuItem addCustomerMenuItem = new JMenuItem("Add New Customer");
-    addBookMenuItem.addActionListener(new ActionListener() {
+    JMenuItem addBook = new JMenuItem("Add New Book");
+    JMenuItem addCustomer = new JMenuItem("Add New Customer");
+    addBook.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent event) {
-        changeScreen(newAddForm);
+        changeScreen(addBookForm);
       }
     });
 
+    addCustomer.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+        changeScreen(addCustomerForm);
+      }
+    });
 
-    addMenu.add(addBookMenuItem);
-    addMenu.add(addCustomerMenuItem);
+    addMenu.add(addBook);
+    addMenu.add(addCustomer);
     mainMenu.add(addMenu);
     mainMenu.addSeparator();
 
@@ -59,6 +68,21 @@ public class StoreUI extends JFrame {
     displayInvMenu.add(displayFullInv);
     displayInvMenu.add(displayRentedInv);
     JMenuItem displayCustomerMenuItem = new JMenuItem("Display Clientele");
+
+
+    displayFullInv.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+        changeScreen(fullInvDisplay);
+      }
+    });
+
+    displayCustomerMenuItem.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent event) {
+        changeScreen(customerDisplay);
+      }
+    });
+
+
     displayMenu.add(displayInvMenu);
     displayMenu.add(displayCustomerMenuItem);
     mainMenu.add(displayMenu);
@@ -83,12 +107,4 @@ public class StoreUI extends JFrame {
     revalidate();
     repaint();
   }
-  // public Book[] updateBookData() {
-  //   int inventoryCount = this.storeModel.getInventoryCount();
-  //   Book[] bookData = new Book[inventoryCount];
-  //   for(int invIdx = 0; invIdx < inventoryCount; invIdx = invIdx + 1) {
-  //     bookData[invIdx] = this.storeModel.getBook(invIdx);
-  //   }
-  //   return bookData;
-  // }
 }

@@ -11,12 +11,6 @@ public class Bookstore {
   public ArrayList<Customer> getCustomers() {
     return this.clientele;
   }
-  public Book getBook(int index) {
-    return this.inventory.get(index);
-  }
-  public int getInventoryCount() {
-    return this.inventory.size();
-  }
   public boolean addBook(Book newBook) {
     return this.inventory.add(newBook);
   }

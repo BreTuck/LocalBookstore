@@ -2,33 +2,34 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AddBookForm extends JPanel {
+public class AddCustomerForm extends JPanel {
     private static int FRAME_WIDTH = 1000;
     private static int FRAME_HEIGHT = 800;
 
     private static int GAP_SIZE = 10;
-    private TextField[] formFields = new TextField[5];
+    private TextField[] formFields = new TextField[3];
     private StoreUI storeInstance;
 
-    public AddBookForm(StoreUI UI) {
+    public AddCustomerForm(StoreUI store) {
         super();
-        this.storeInstance = UI;
+        this.storeInstance = store;
         SpringLayout formLayout = new SpringLayout();
         setLayout(formLayout);
         setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setOpaque(true);
         setBackground(new Color(255, 255, 255));
+
         JPanel form = new JPanel(new SpringLayout());
 
-        JLabel formTitle = new JLabel("Add a Book to Inventory");
+        JLabel formTitle = new JLabel("Add a Customer");
         formLayout.putConstraint(SpringLayout.NORTH, this, 100, SpringLayout.NORTH, formTitle);
         formLayout.putConstraint(SpringLayout.SOUTH, form, 300, SpringLayout.NORTH, formTitle);
         add(formTitle);
 
-        JButton submitForm = new JButton("Submit New Book");
+        JButton submitForm = new JButton("Submit New Customer");
         submitForm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                storeInstance.mainControl.add(new Book(formFields[0].getText(), formFields[1].getText(), formFields[2].getText(), Integer.parseInt(formFields[3].getText()), Integer.parseInt(formFields[4].getText())));
+                storeInstance.mainControl.add(new Customer(formFields[0].getText(), formFields[1].getText(), formFields[2].getText()));
                 storeInstance.setHomeScreen();
             }
         });
@@ -37,7 +38,7 @@ public class AddBookForm extends JPanel {
         
         
         final int txtFieldSize = 15;
-        String[] formLabels = {"Title: ", "Author: ", "Publisher: ", "Number of Pages: ", "Number of Copies to Add: "};
+        String[] formLabels = {"First Name: ", "Last Name: ", "Email Address: "};
         int numPairs = formLabels.length;
 
         for(int idx = 0; idx < numPairs; idx = idx + 1) {
@@ -52,6 +53,4 @@ public class AddBookForm extends JPanel {
         add(form);
         setVisible(true);
     }
-
-
 }
